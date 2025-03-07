@@ -27,7 +27,7 @@ jobs:
 
       - name: Login to Azure using Managed Identity
         run: |
-          az login --identity --client-id "68dfdf89-0ba7-4714-92ad-a6d6b9f159ee" --tenant ${{ secrets.AZURE_TENANT_ID }} --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          az login --identity --client-id "68dfdf89-0ba7-4714-92ad-a6d6b9f159ee" --tenant "84f1e4ea-8554-43e1-8709-f0b8589ea118" --subscription "80ea84e8-afce-4851-928a-9e2219724c69"
 
       - name: Initialize Terraform
         run: terraform init
