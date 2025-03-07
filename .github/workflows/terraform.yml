@@ -11,6 +11,7 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -21,12 +22,15 @@ jobs:
       - name: Login to Azure using Managed Identity
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}  # Client ID of the Federated Identity
+          identity: ${{ secrets.AZURE_MANAGED_IDENTITY_CLIENT_ID }}  # Client ID of the User Assigned Managed Identity (costerraformumi)
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}  # Your Tenant ID
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}  # Your Azure Subscription ID
-          
+
       - name: Initialize Terraform
         run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan
 
       - name: Apply Terraform
         run: terraform apply -auto-approve
